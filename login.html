@@ -1,0 +1,348 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Global Explorer | Login</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --primary: #3498db;
+            --secondary: #2ecc71;
+            --accent: #e74c3c;
+            --dark: #2c3e50;
+            --light: #ecf0f1;
+            --shadow: 0 15px 30px rgba(0, 0, 0, 0.2);
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Poppins', sans-serif;
+        }
+        
+        body {
+            background: linear-gradient(135deg, #1e3c72 0%, #2a5298 50%, #6a11cb 100%);
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-direction: column;
+            padding: 20px;
+            color: var(--light);
+        }
+        
+        .logo {
+            margin-bottom: 30px;
+            text-align: center;
+        }
+        
+        .logo h1 {
+            font-size: 2.5rem;
+            font-weight: 800;
+            background: linear-gradient(to right, #fdc830, #f37335);
+            background-clip: text;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
+        }
+        
+        .logo p {
+            font-size: 1rem;
+            opacity: 0.8;
+            margin-top: 5px;
+        }
+        
+        .container {
+            width: 100%;
+            max-width: 500px;
+            padding: 40px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 20px;
+            box-shadow: var(--shadow);
+            text-align: center;
+            backdrop-filter: blur(15px);
+            animation: fadeIn 0.8s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            transition: all 0.4s ease;
+        }
+        
+        .container:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+        }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(-30px) scale(0.95); }
+            to { opacity: 1; transform: translateY(0) scale(1); }
+        }
+        
+        .container h2 {
+            margin-bottom: 25px;
+            color: #fff;
+            font-size: 28px;
+            font-weight: 700;
+            position: relative;
+            display: inline-block;
+        }
+        
+        .container h2::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 50px;
+            height: 3px;
+            background: linear-gradient(to right, var(--secondary), var(--primary));
+            border-radius: 3px;
+        }
+        
+        .input-group {
+            position: relative;
+            margin-bottom: 20px;
+            text-align: left;
+        }
+        
+        .input-group label {
+            display: block;
+            margin-bottom: 8px;
+            font-size: 14px;
+            color: rgba(255, 255, 255, 0.8);
+            font-weight: 500;
+        }
+        
+        .input-group i {
+            position: absolute;
+            left: 15px;
+            top: 42px;
+            color: rgba(255, 255, 255, 0.7);
+            font-size: 16px;
+        }
+        
+        input {
+            width: 100%;
+            padding: 15px 15px 15px 45px;
+            margin: 5px 0;
+            border: none;
+            border-radius: 10px;
+            background: rgba(255, 255, 255, 0.15);
+            color: #fff;
+            font-size: 16px;
+            outline: none;
+            transition: all 0.3s;
+            border: 1px solid transparent;
+        }
+        
+        input:focus {
+            background: rgba(255, 255, 255, 0.25);
+            border-color: rgba(255, 255, 255, 0.4);
+            box-shadow: 0 0 0 3px rgba(52, 152, 219, 0.2);
+        }
+        
+        input::placeholder {
+            color: rgba(255, 255, 255, 0.6);
+        }
+        
+        button {
+            width: 100%;
+            padding: 15px;
+            margin-top: 20px;
+            background: linear-gradient(45deg, var(--primary), var(--secondary));
+            border: none;
+            color: white;
+            font-size: 18px;
+            font-weight: 600;
+            cursor: pointer;
+            border-radius: 10px;
+            transition: all 0.3s;
+            box-shadow: 0 5px 15px rgba(46, 204, 113, 0.3);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+        
+        button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 20px rgba(46, 204, 113, 0.4);
+        }
+        
+        button:active {
+            transform: translateY(0);
+        }
+        
+        .social-login {
+            margin: 25px 0;
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+        }
+        
+        .social-btn {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 20px;
+            cursor: pointer;
+            transition: all 0.3s;
+            box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1);
+        }
+        
+        .social-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 15px rgba(0, 0, 0, 0.2);
+        }
+        
+        .google {
+            background: #DB4437;
+        }
+        
+        .facebook {
+            background: #4267B2;
+        }
+        
+        .twitter {
+            background: #1DA1F2;
+        }
+        
+        .toggle-btn {
+            background: transparent;
+            border: none;
+            color: white;
+            font-size: 16px;
+            cursor: pointer;
+            text-decoration: none;
+            margin-top: 20px;
+            display: inline-block;
+            position: relative;
+            padding-bottom: 5px;
+            opacity: 0.9;
+        }
+        
+        .toggle-btn:hover {
+            opacity: 1;
+        }
+        
+        .toggle-btn::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: var(--secondary);
+            transition: width 0.3s;
+        }
+        
+        .toggle-btn:hover::after {
+            width: 100%;
+        }
+        
+        .forgot-password {
+            text-align: right;
+            margin-bottom: 20px;
+        }
+        
+        .forgot-password a {
+            color: rgba(255, 255, 255, 0.7);
+            font-size: 14px;
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+        
+        .forgot-password a:hover {
+            color: var(--secondary);
+        }
+        
+        @media (max-width: 600px) {
+            .container {
+                padding: 30px 20px;
+            }
+            
+            .logo h1 {
+                font-size: 2rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="logo">
+        <h1>Global Explorer</h1>
+        <p>Your journey begins here</p>
+    </div>
+    
+    <div class="container">
+        <h2>Welcome Back Explorer</h2>
+        
+        <div class="input-group">
+            <label for="email">Email Address</label>
+            <i class="fas fa-envelope"></i>
+            <input type="email" id="email" placeholder="explorer@example.com" required>
+        </div>
+        
+        <div class="input-group">
+            <label for="password">Password</label>
+            <i class="fas fa-lock"></i>
+            <input type="password" id="password" placeholder="Enter your password" required>
+        </div>
+        
+        <div class="forgot-password">
+            <a href="#">Forgot password?</a>
+        </div>
+        
+        <button onclick="login()">Login</button>
+        
+        <div class="social-login">
+            <div class="social-btn google" onclick="googleLogin()">
+                <i class="fab fa-google"></i>
+            </div>
+            <div class="social-btn facebook" onclick="facebookLogin()">
+                <i class="fab fa-facebook-f"></i>
+            </div>
+            <div class="social-btn twitter" onclick="twitterLogin()">
+                <i class="fab fa-twitter"></i>
+            </div>
+        </div>
+        <button class="toggle-btn" onclick="window.location.href='signup.html'">New to Global Explorer? Create Account</button>
+    </div>
+    <script>
+        function login() {
+            let email = document.getElementById("email").value;
+            let password = document.getElementById("password").value;
+            
+            if(email === "" || password === "") {
+                alert("Please fill all fields");
+                return;
+            }
+            // Simulate loading
+            const btn = document.querySelector("button");
+            btn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Authenticating...';
+            btn.disabled = true;
+            
+            setTimeout(() => {
+                alert("Logged in successfully! Welcome back, Explorer!");
+                btn.innerHTML = 'Login';
+                btn.disabled = false;
+                // Redirect to dashboard or home page
+                // window.location.href = "dashboard.html";
+            }, 1500);
+        }
+        
+        function googleLogin() {
+            alert("Redirecting to Google authentication...");
+        }
+        
+        function facebookLogin() {
+            alert("Redirecting to Facebook authentication...");
+        }
+        
+        function twitterLogin() {
+            alert("Redirecting to Twitter authentication...");
+        }
+    </script>
+</body>
+</html>
